@@ -5,6 +5,8 @@ import { Button } from '~/components/ui/button';
 import { Alert } from 'react-native';
 import { Input } from '~/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router } from 'expo-router';
 
 import {
   Card,
@@ -17,6 +19,34 @@ import {
 
 export default function Screen() {
   const AVATAR = 'https://github.com/mrzachnugent.png';
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    checkOnboardingStatus();
+  }, []);
+
+  const checkOnboardingStatus = async () => {
+    try {
+      const completed = await AsyncStorage.getItem('onboarding_completed');
+      if (completed !== 'true') {
+        router.replace('/onboarding');
+        return;
+      }
+    } catch (error) {
+      console.error('Error checking onboarding status:', error);
+      router.replace('/onboarding');
+      return;
+    }
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return (
+      <View className='flex-1 items-center justify-center bg-secondary/30'>
+        <Text>Yükleniyor...</Text>
+      </View>
+    );
+  }
 
   return (
     <View className='flex-1 items-center gap-5 p-4 bg-secondary/30'>

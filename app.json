@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "testapp",
-    "slug": "testapp",
+    "name": "medipol",
+    "slug": "medipol",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "medipol",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -17,13 +17,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bruh6x.medipol"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bruh6x.medipol"
     },
     "web": {
       "bundler": "metro",
@@ -35,6 +37,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fefae6de-d309-4750-a674-10c0322c8aa4"
+      }
     }
   }
 }
